@@ -2,3 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* .my-container{
+    @apply  
+} */
+
+.text-primary{
+    @apply text-white 
+}
