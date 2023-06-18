@@ -25,8 +25,9 @@ export default {
         },
       },
     ],
+    colors: {
+      "blue-purple": ["#6F34A8", "#D16ED1"],
+    },
   },
   plugins: [require("daisyui")],
 };
-
-  

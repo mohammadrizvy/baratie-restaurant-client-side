@@ -9,3 +9,11 @@
 .text-primary{
     @apply text-white 
 }
+
+.button-primary{
+    @apply btn text-white bg-gradient-to-r from-purple-800 to-pink-500
+}
+
+.hoverit{
+    @apply  hover:scale-110 transition-transform duration-300
+}

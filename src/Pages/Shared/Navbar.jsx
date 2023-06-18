@@ -2,7 +2,7 @@ import React from "react";
 import { FaUserCircle } from "react-icons/fa";
 const Header = () => {
   return (
-    <div className="ms-8 me-8 mt-0">
+    <div className="ms-8 me-8 mt-0 ">
       <div className="navbar bg-secondary rounded-br-lg rounded-bl-lg py-6">
         <div className="navbar-start">
           <div className="dropdown">
@@ -42,7 +42,7 @@ const Header = () => {
           </div>
           <div className="flex content-center">
             <a className="normal-case text-4xl font-bold text-primary ms-8 flex hover:scale-110 transition-transform duration-300">
-              Hotel Baratie
+              Baratie Restaurant
             </a>
           </div>
         </div>
