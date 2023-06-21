@@ -1,11 +1,10 @@
 import React from 'react';
-import Footer from '../Pages/Shared/Footer';
-import Navbar from '../Pages/Shared/Navbar';
-import { Outlet } from 'react-router-dom';
 import Cards from '../Pages/Cards/Cards';
-import Banner from '../Pages/Shared/Banner/Banner';
+import Navbar from "../Pages/Shared/Navbar";
+import Footer from '../Pages/Shared/Footer';
+import { Outlet } from 'react-router-dom';
 
-const Main = () => {
+const CardLayout = () => {
     return (
         <div>
             <Navbar></Navbar>
@@ -15,4 +14,4 @@ const Main = () => {
     );
 };
 
-export default Main;
+export default CardLayout;
