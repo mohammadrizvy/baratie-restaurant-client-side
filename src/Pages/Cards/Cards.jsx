@@ -13,10 +13,10 @@ const Cards = () => {
   console.log(chefsData);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 mb-5 me-8 ms-8 ">
+    <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 mb-5 me-8 ms-8 ">
       {chefsData.map((chefsData) => (
         <div key={chefsData.id}>
-          <div className="card lg:card-side bg-secondary shadow-xl rounded-md hover:scale-105 transition-transform duration-300">
+          <div className="card lg:card-side bg-secondary shadow-xl rounded-md transform hover:scale-105 duration-500 ease-in-out">
             <figure>
               <img
                 className="ms-8 rounded-md"

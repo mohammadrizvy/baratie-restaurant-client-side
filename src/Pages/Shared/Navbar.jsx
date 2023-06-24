@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaUserCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
+
 const Header = () => {
+  const { user, logout } = useContext(AuthContext);
+  console.log(user?.email);
+
+  const handleLogout = () => {
+    logout() 
+    .then()
+    .catch((err) => {
+      console.log(err)
+    })
+
+  }
   return (
-    <div className="ms-8 me-8 mt-0 ">
+    <div className="ms-8 me-8 mt-0">
       <div className="navbar bg-secondary rounded-br-lg rounded-bl-lg py-6">
-        <div className="navbar-start">
-          <div className="dropdown">
+        <div className="navbar-start flex flex-col lg:flex-row">
+          <div className="dropdown mb-3 lg:mb-0">
             <label
               tabIndex={0}
               className="btn btn-ghost text-primary lg:hidden"
@@ -30,10 +44,14 @@ const Header = () => {
               className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <p className="">Home</p>
+                <Link to={"/"}>
+                  <p className="">Home</p>
+                </Link>
               </li>
               <li>
-                <p>Blogs</p>
+                <Link to={"/blogs"}>
+                  <p>Blogs</p>
+                </Link>
               </li>
               <li>
                 <p>Order Online</p>
@@ -48,12 +66,16 @@ const Header = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <div className="menu menu-horizontal px-1">
-            <p className="text-primary hover:scale-110 transition-transform duration-300">
-              Home
-            </p>
-            <p className="me-8 ms-8 text-primary hover:scale-110 transition-transform duration-300">
-              Blogs
-            </p>
+            <Link to={"/"}>
+              <p className="text-primary hover:scale-110 transition-transform duration-300">
+                Home
+              </p>
+            </Link>
+            <Link to={"/blogs"}>
+              <p className="me-8 ms-8 text-primary hover:scale-110 transition-transform duration-300">
+                Blogs
+              </p>
+            </Link>
             <p className="text-primary hover:scale-110 transition-transform duration-300">
               Order Online
             </p>
@@ -61,12 +83,22 @@ const Header = () => {
         </div>
         <div className="navbar-end">
           <ul className="flex me-8 align-middle">
-            <div className=" text-primary text-m me-2 hover:scale-110 transition-transform duration-300">
-              Login
-            </div>
             <div className="text-white text-3xl hover:scale-110 transition-transform duration-300">
               <FaUserCircle />
             </div>
+            {user?.email ? (
+              <Link to={"/"}>
+                <div onClick={handleLogout } className="text-primary text-m ms-4 hover:scale-110 transition-transform duration-300">
+                  Logout
+                </div>
+              </Link>
+            ) : (
+              <Link to={"/login"}>
+                <div className="text-primary text-m ms-4 hover:scale-110 transition-transform duration-300">
+                  Login
+                </div>
+              </Link>
+            )}
           </ul>
         </div>
       </div>
