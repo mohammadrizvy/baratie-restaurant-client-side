@@ -2,8 +2,8 @@ import React from 'react';
 
 const Recipes = () => {
     return (
-        <div>
-            Recipes are comming ....
+        <div className='ms-8 me-8'>
+            
         </div>
     );
 };

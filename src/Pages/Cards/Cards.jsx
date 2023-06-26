@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Tilt } from "react-tilt";
 
 const Cards = () => {
@@ -10,7 +11,7 @@ const Cards = () => {
       .then((data) => setChefsData(data));
   }, []);
 
-  console.log(chefsData);
+  // console.log(chefsData);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 mb-5 me-8 ms-8 ">
@@ -31,7 +32,9 @@ const Cards = () => {
                 <p className="text-white">Recipes: {chefsData.recipe_amount}</p>
                 <p className="text-white">Exp: {chefsData.experience}</p>
                 <p className="text-white">Likes: {chefsData.likes}</p>
-                <button className="btn button-primary">View Recipes</button>
+                <Link to={""}>
+                  <button className="btn button-primary">View Recipes</button>
+                </Link>
               </div>
             </div>
           </div>

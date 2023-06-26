@@ -8,6 +8,7 @@ const CardLayout = () => {
     return (
         <div>
             <Navbar></Navbar>
+            <Cards></Cards>
             <Outlet></Outlet>
             <Footer></Footer>
         </div>

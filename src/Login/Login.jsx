@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
+import { FaGithub, FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
@@ -9,19 +10,26 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
-  //   let navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if ((email, password)) {
+    if (email && password) {
       loginUser(email, password)
         .then((result) => {
-          setMessage("Logged in succesfully ")
+          setMessage("Logged in successfully");
+          setEmail("");
+          setPassword("");
+          setError("");
         })
         .catch((error) => {
-          setError("Password did't match")
+          setError("Password didn't match");
         });
     }
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword((prevState) => !prevState);
   };
 
   return (
@@ -54,36 +62,58 @@ const Login = () => {
               >
                 Password:
               </label>
-              <input
-                placeholder="Enter password"
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="border border-gray-400 rounded px-3 py-2 w-full"
-                required
-              />
+              <div className="relative">
+                <input
+                  placeholder="Enter password"
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="border border-gray-400 rounded px-3 py-2 w-full pr-10"
+                  required
+                />
+                <button
+                  type="button"
+                  className="absolute top-1/2 transform -translate-y-1/2 right-3 text-gray-400 hover:text-gray-600"
+                  onClick={toggleShowPassword}
+                >
+                  {showPassword ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
+                </button>
+              </div>
             </div>
             <p className="mb-4 text-red-600">{error}</p>
             <p className="mb-4 text-green-600">{message}</p>
-
-            <div className="flex items-center">
-              <button
-                onClick={handleLogin}
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded button-primary"
-              >
-                Login
-              </button>
-
-              <p className="ms-5 text-white">
-                Don't Have an Account?{" "}
-                <Link className="ms-1 text-red-600" to="/register">
-                  Register
-                </Link>
-              </p>
-            </div>
           </form>
+          <div className="">
+            <span className="ms-[43%] text-white text-xl "> Sing-in</span>
+            <hr />
+            <div className="flex justify-center gap-5 mt-3 mb-3">
+              <button className="btn btn-neutral border-nonetext-white">
+                Google<FaGoogle></FaGoogle>
+              </button>
+              <button className="btn">
+                GitHub<FaGithub></FaGithub>
+              </button>
+            </div>
+          </div>
+          <hr />
+
+          <div className="flex items-center mt-5">
+            <button
+              onClick={handleLogin}
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded button-primary"
+            >
+              Login
+            </button>
+
+            <p className="ms-5 text-white">
+              Don't Have an Account?{" "}
+              <Link className="ms-1 text-red-600" to="/register">
+                Register
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

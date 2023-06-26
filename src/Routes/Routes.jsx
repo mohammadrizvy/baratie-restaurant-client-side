@@ -6,6 +6,9 @@ import Recipes from "../Pages/Recipes/Recipes";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import Blogs from "../Blogs/Blogs";
+import Cards from "../Pages/Cards/Cards";
+import LoginLayout from "../Layouts/LoginLayout";
+import OrderOnline from "../OrderOnline/OrderOnline";
 
 const router = createBrowserRouter([
  {
@@ -20,21 +23,25 @@ const router = createBrowserRouter([
             path : '/blogs', 
             element : <Blogs></Blogs>
          },
-    ]
-  },
- {
-    path: 'recipes',
-    element: <CardLayout></CardLayout>,
-    children: [
         {
-            path : ':id', 
-            element : <Recipes></Recipes>
+            path : '/orderonline', 
+            element : <OrderOnline></OrderOnline>
          },
     ]
   },
  {
     path: '/',
-    element: <CardLayout></CardLayout>,
+    element: <CardLayout />,
+    children: [
+      {
+        path: '/recipes/:id',
+        element: <Recipes></Recipes>
+      }
+    ]
+  },
+ {
+    path: '/',
+    element: <LoginLayout></LoginLayout>,
     children: [
         {
             path : 'login', 

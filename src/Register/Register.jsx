@@ -5,44 +5,46 @@ import { getAuth, updateProfile } from "firebase/auth";
 
 const Register = () => {
   const { registerUser } = useContext(AuthContext);
-  const { userInfo } = useContext(AuthContext);
 
   const [displayName, setDisplayName] = useState("");
   const [photoURL, setPhotoURL] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [message,setMessage] = useState("")
+  const [message, setMessage] = useState("");
 
   const handleRegister = (event) => {
-    console.log(email, password, displayName, photoURL);
-
     event.preventDefault();
     if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(password)) {
       setError(
-        "Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be less than 6 characters."
+        "Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be at least 6 characters."
       );
       return;
     }
-    if ((email, password)) {
-      registerUser(email, password)
-        .then((result) => {
-        setMessage("Registration Succesfull")
-          console.log(result.user);
-        })
-        .catch((err) => {
-          console.log(err.message);
+
+    registerUser(email, password)
+      .then((result) => {
+        setMessage("Registration Successful");
+        return updateProfile(getAuth().currentUser, {
+          displayName: displayName,
+          photoURL: photoURL,
         });
-    }
-    if ((displayName, photoURL)) {
-      userInfo(displayName, photoURL)
-        .then((result) => {
-          console.log(result.user);
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-    }
+      })
+      .then(() => {
+        const authUser = getAuth().currentUser;
+        setDisplayName(authUser.displayName);
+        setPhotoURL(authUser.photoURL);
+
+        console.log("User Profile:", authUser);
+          setEmail("");
+          setPassword("");
+          setError("");
+          setDisplayName("");
+          setPhotoURL("");
+      })
+      .catch((err) => {
+        setError("Email already in use");
+      });
   };
 
   return (
@@ -85,9 +87,8 @@ const Register = () => {
               Photo URL:
             </label>
             <input
-              placeholder="Upload your image Url"
+              placeholder="Upload your image URL"
               type="text"
-              //   id="email"
               value={photoURL}
               onChange={(e) => setPhotoURL(e.target.value)}
               className="border border-gray-400 rounded px-3 py-2 w-full"
@@ -101,8 +102,8 @@ const Register = () => {
               Password:
             </label>
             <input
-              placeholder="Create your passsword"
-              type="text"
+              placeholder="Create your password"
+              type="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -114,14 +115,13 @@ const Register = () => {
           </div>
           <div className="flex items-center">
             <button
-            //   onClick={handleRegister}
               type="submit"
-              className="bg-blue-500 hover:bg-whitext-white text-white font-bold py-2 px-4 rounded button-primary"
+              className="bg-blue-500 hover:bg-white text-white font-bold py-2 px-4 rounded button-primary"
             >
               Register
             </button>
             <p className="ms-5 text-white">
-              Already Have an Account?
+              Already have an account?
               <Link className="ms-1 text-red-600" to="/login">
                 Login
               </Link>

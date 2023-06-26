@@ -1,11 +1,16 @@
 import React, { useContext } from "react";
-import { FaUserCircle } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
   console.log(user?.email);
+  console.log(user?.displayName);
+  console.log(user?.photoURL);
+
+   const photoURL = user && user.photoURL;
+    const userName = user && user.displayName;
 
   const handleLogout = () => {
     logout() 
@@ -54,7 +59,9 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <p>Order Online</p>
+                <Link to={"/orderonline"}>
+                  <p>Order Online</p>
+                </Link>
               </li>
             </ul>
           </div>
@@ -76,19 +83,39 @@ const Header = () => {
                 Blogs
               </p>
             </Link>
-            <p className="text-primary hover:scale-110 transition-transform duration-300">
-              Order Online
-            </p>
+            <Link
+              className="text-primary hover:scale-110 transition-transform duration-300"
+              to={"/orderonline"}>
+              <p>Order Online</p>
+            </Link>
           </div>
         </div>
         <div className="navbar-end">
-          <ul className="flex me-8 align-middle">
-            <div className="text-white text-3xl hover:scale-110 transition-transform duration-300">
-              <FaUserCircle />
-            </div>
+          <ul className="flex me-8 align-middle items-center">
+            {user?.photoURL ? (
+              <div className="tooltip tooltip-left" data-tip={userName}>
+                <img
+                  className="w-10   rounded-full text-white text-3xl hover:scale-110 transition-transform duration-300"
+                  src={photoURL}
+                  alt="User Photo"
+                />
+              </div>
+            ) : (
+              <div className="tooltip tooltip-left" data-tip="Guest">
+                <img
+                  className="w-10 rounded-full  ring-offset-base-100 ring-offset-2 bg-white text-3xl hover:scale-110 transition-transform duration-300"
+                  src="https://i.ibb.co/m6k8XWR/Pngtree-user-avatar-placeholder-black-6796227.png"
+                  alt="User Photo"
+                />
+              </div>
+            )}
+
             {user?.email ? (
               <Link to={"/"}>
-                <div onClick={handleLogout } className="text-primary text-m ms-4 hover:scale-110 transition-transform duration-300">
+                <div
+                  onClick={handleLogout}
+                  className="text-primary text-m ms-4 hover:scale-110 transition-transform duration-300"
+                >
                   Logout
                 </div>
               </Link>
