@@ -1,11 +1,15 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import { FaGithub, FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
+// import {useHistory } from "react-router-dom";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
-
+  // const location = useLocation();
+  // const history = useHistory();
+  // let navigate = useNavigate();
+    const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -21,6 +25,7 @@ const Login = () => {
           setEmail("");
           setPassword("");
           setError("");
+           navigate("/");
         })
         .catch((error) => {
           setError("Password didn't match");

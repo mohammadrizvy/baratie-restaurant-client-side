@@ -9,6 +9,7 @@ import Blogs from "../Blogs/Blogs";
 import Cards from "../Pages/Cards/Cards";
 import LoginLayout from "../Layouts/LoginLayout";
 import OrderOnline from "../OrderOnline/OrderOnline";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -19,10 +20,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
       },
-      {
-        path: "/blogs",
-        element: <Blogs></Blogs>,
-      },
+
       {
         path: "/orderonline",
         element: <OrderOnline></OrderOnline>,
@@ -35,7 +33,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: ":id",
-        element: <Recipes></Recipes>,
+        element: (
+          <PrivateRoute>
+            <Recipes></Recipes>
+          </PrivateRoute>
+        ),
         loader: ({ params }) => fetch(`http://localhost:600/chef/${params.id}`),
       },
     ],
@@ -51,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register></Register>,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs></Blogs>,
       },
     ],
   },

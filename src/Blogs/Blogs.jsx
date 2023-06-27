@@ -2,7 +2,10 @@ import React from "react";
 
 const Blogs = () => {
   return (
-    <div className="ms-8 me-8">
+    <div className="ms-8 me-8 mb-10">
+      <div className=" btn flex items-center justify-center bg-gradient-to-r from-purple-800 to-pink-500 border-none  transition-transform duration-300 p-5 rounded-md mb-10 mt-10 text-white">
+        react-to-pdf
+      </div>
       <span className=" text-4xl font-bold mt-8">
         1 . Tell us the differences between uncontrolled and controlled
         components?
@@ -69,6 +72,8 @@ const Blogs = () => {
         rendering and user interactions, resulting in cleaner and more readable
         code.
       </span>
+      <br />
+    
     </div>
   );
 };
