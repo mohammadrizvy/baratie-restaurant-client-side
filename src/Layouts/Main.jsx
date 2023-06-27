@@ -9,6 +9,8 @@ const Main = () => {
     return (
         <div>
             <Navbar></Navbar>
+            <Banner></Banner>
+            <Cards></Cards>
             <Outlet></Outlet>
             <Footer></Footer>
         </div>

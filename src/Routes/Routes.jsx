@@ -11,50 +11,49 @@ import LoginLayout from "../Layouts/LoginLayout";
 import OrderOnline from "../OrderOnline/OrderOnline";
 
 const router = createBrowserRouter([
- {
-    path: '/',
+  {
+    path: "/",
     element: <Main></Main>,
     children: [
-        {
-            path : '/', 
-            element : <Home></Home>
-         },
-        {
-            path : '/blogs', 
-            element : <Blogs></Blogs>
-         },
-        {
-            path : '/orderonline', 
-            element : <OrderOnline></OrderOnline>
-         },
-    ]
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs></Blogs>,
+      },
+      {
+        path: "/orderonline",
+        element: <OrderOnline></OrderOnline>,
+      },
+    ],
   },
- {
-    path: '/',
+  {
+    path: "recipes",
     element: <CardLayout />,
     children: [
       {
-        path: '/recipes/:id',
-        element: <Recipes></Recipes>
-      }
-    ]
+        path: ":id",
+        element: <Recipes></Recipes>,
+        loader: ({ params }) => fetch(`http://localhost:600/chef/${params.id}`),
+      },
+    ],
   },
- {
-    path: '/',
+  {
+    path: "/",
     element: <LoginLayout></LoginLayout>,
     children: [
-        {
-            path : 'login', 
-            element : <Login></Login>
-         },
-        {
-            path : 'register', 
-            element : <Register></Register>
-         },
-    ]
+      {
+        path: "login",
+        element: <Login></Login>,
+      },
+      {
+        path: "register",
+        element: <Register></Register>,
+      },
+    ],
   },
-  
-  
 ]);
 
 export default router; 
