@@ -10,6 +10,7 @@ import Cards from "../Pages/Cards/Cards";
 import LoginLayout from "../Layouts/LoginLayout";
 import OrderOnline from "../OrderOnline/OrderOnline";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
         element: <Blogs></Blogs>,
       },
     ],
+  },
+  {
+    path: "*",
+    element:<ErrorPage></ErrorPage>,
   },
 ]);
 
