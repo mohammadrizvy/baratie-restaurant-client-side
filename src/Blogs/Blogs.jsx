@@ -1,9 +1,16 @@
 import React from "react";
+import html2pdf from "html2pdf.js";
+
 
 const Blogs = () => {
+   const handleDownloadPdf = () => {
+     const element = document.getElementById("blogs-content");
+
+     html2pdf().set({ filename: "blogs.pdf" }).from(element).save();
+   };
   return (
-    <div className="ms-8 me-8 mb-10">
-      <div className=" btn flex items-center justify-center bg-gradient-to-r from-purple-800 to-pink-500 border-none  transition-transform duration-300 p-5 rounded-md mb-10 mt-10 text-white">
+    <div className="ms-8 me-8 mb-10" id="blogs-content">
+      <div onClick={handleDownloadPdf} className=" btn flex items-center justify-center bg-gradient-to-r from-purple-800 to-pink-500 border-none  transition-transform duration-300 p-5 rounded-md mb-10 mt-10 text-white">
         react-to-pdf
       </div>
       <span className=" text-4xl font-bold mt-8">
@@ -73,7 +80,6 @@ const Blogs = () => {
         code.
       </span>
       <br />
-    
     </div>
   );
 };
