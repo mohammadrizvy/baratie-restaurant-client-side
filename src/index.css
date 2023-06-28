@@ -10,10 +10,19 @@
     @apply text-white 
 }
 
+.text-link{
+    @apply text-blue-600
+}
+
 .button-primary{
     @apply btn text-white bg-gradient-to-r from-purple-800 to-pink-500 border-none hover:scale-110 transition-transform duration-300
 }
 
 .hoverit{
     @apply  hover:scale-110 transition-transform duration-300
+}
+
+nav.a.active{
+    text-decoration: none;
+    font-weight: bold;
 }

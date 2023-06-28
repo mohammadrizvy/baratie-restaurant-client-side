@@ -6,12 +6,12 @@ const Blogs = () => {
    const handleDownloadPdf = () => {
      const element = document.getElementById("blogs-content");
 
-     html2pdf().set({ filename: "blogs.pdf" }).from(element).save();
+     html2pdf().set({ filename: "blogpagepdfformetpdf" }).from(element).save();
    };
   return (
     <div className="ms-8 me-8 mb-10" id="blogs-content">
-      <div onClick={handleDownloadPdf} className=" btn flex items-center justify-center bg-gradient-to-r from-purple-800 to-pink-500 border-none  transition-transform duration-300 p-5 rounded-md mb-10 mt-10 text-white">
-        react-to-pdf
+      <div onClick={handleDownloadPdf} className=" btn flex items-center justify-center bg-gradient-to-r from-purple-800 to-pink-500 border-none  transition-transform duration-300 pt-8 pb-9 rounded-md mb-10 mt-10 text-white">
+         Click here if you wanna download this page as PDF
       </div>
       <span className=" text-4xl font-bold mt-8">
         1 . Tell us the differences between uncontrolled and controlled

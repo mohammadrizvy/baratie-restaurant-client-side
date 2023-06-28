@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
- import { ToastContainer, toast } from "react-toastify";
- import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Dna } from  'react-loader-spinner'
+
 
 const Recipes = () => {
   const recipes = useLoaderData();
     const [disabledButtons, setDisabledButtons] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+     useEffect(() => {
+       
+       setTimeout(() => {
+         setLoading(false);
+       }, 1000);
+     }, []);
 
   console.log(recipes);
 
-  const { chef_photo, chef_name, likes, chef_bio } = recipes;
+  const { chef_photo, chef_name,chef_bio } = recipes;
 
    const handleAddToFavorites = (index) => {
      setDisabledButtons((prevDisabledButtons) => [
@@ -20,12 +30,25 @@ const Recipes = () => {
      toast("Added to Favorites");
    };
 
+    if (loading) {
+      return (
+        <div className="flex justify-center items-center h-screen">
+          <Dna
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="dna-loading"
+            wrapperStyle={{}}
+            wrapperClass="dna-wrapper"
+          />
+        </div>
+      );
+    }
+
   return (
     <div className="ms-8 me-8 bg-black p-10 mt-10 mb-10 rounded-md">
       <div className=" flex items-center mb-1 ">
-        {/* <figure> */}
         <img className=" rounded-md " src={chef_photo} alt="Movie" />
-        {/* </figure> */}
         <div className="card-body">
           <h2 className="card-title text-white">{chef_name}</h2>
           <p className="text-white">{chef_bio}</p>

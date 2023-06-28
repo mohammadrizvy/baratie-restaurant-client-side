@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { FaGithub } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Header = () => {
@@ -19,6 +19,13 @@ const Header = () => {
       console.log(err)
     })
 
+  }
+
+  const activeNaveStyles =({isActive}) => {
+    return{
+      fontWeight : isActive ? 'bold' : 'normal',
+      textDecoration : isActive ? 'none' : 'underline'
+    }
   }
   return (
     <div className="ms-8 me-8 mt-0">
@@ -73,21 +80,22 @@ const Header = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <div className="menu menu-horizontal px-1">
-            <Link to={"/"}>
-              <p className="text-primary hover:scale-110 transition-transform duration-300">
+            <NavLink style={activeNaveStyles} className="text-primary hover:scale-110 transition-transform duration-300 underline" to={"/"}>
+              
                 Home
-              </p>
-            </Link>
-            <Link to={"/blogs"}>
-              <p className="me-8 ms-8 text-primary hover:scale-110 transition-transform duration-300">
+              
+            </NavLink>
+            <NavLink style={activeNaveStyles} className="me-8 ms-8 text-primary hover:scale-110 transition-transform duration-300 underline" to={"/blogs"}>
+              
                 Blogs
-              </p>
-            </Link>
-            <Link
-              className="text-primary hover:scale-110 transition-transform duration-300"
+              
+            </NavLink>
+            <NavLink
+            style={activeNaveStyles}
+              className="text-primary hover:scale-110 transition-transform duration-300 underline"
               to={"/orderonline"}>
-              <p>Order Online</p>
-            </Link>
+              Order Online
+            </NavLink>
           </div>
         </div>
         <div className="navbar-end">
