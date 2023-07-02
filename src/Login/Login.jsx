@@ -1,15 +1,21 @@
 import React, { useContext, useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import { FaGithub, FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
-// import {useHistory } from "react-router-dom";
+import {
+  // signInWithGoogle,
+  // signInWithGitHub,
+  // updateProfile,
+} from "../Firebase/firebase.config";
+
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
-  // const location = useLocation();
-  // const history = useHistory();
-  // let navigate = useNavigate();
-    const navigate = useNavigate();
+  const { signInWithGoogle } = useContext(AuthContext);
+  const { signInWithGitHub } = useContext(AuthContext);
+  const [displayName, setDisplayName] = useState("");
+  const [photoURL, setPhotoURL] = useState("");
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -25,7 +31,7 @@ const Login = () => {
           setEmail("");
           setPassword("");
           setError("");
-           navigate("/");
+          navigate("/");
         })
         .catch((error) => {
           setError("Password didn't match");
@@ -35,6 +41,56 @@ const Login = () => {
 
   const toggleShowPassword = () => {
     setShowPassword((prevState) => !prevState);
+  };
+
+  // Google SignIn-----------
+ 
+  const handleGoogleSignIn = (e) => {
+    e.preventDefault();
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  }
+
+  // GitHub SignIn -------------
+
+  const handleGithubSignIn =(e) => {
+    e.preventDefault();
+    signInWithGitHub()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  }
+
+
+  //! To Upate Profile And Name 
+
+  const updateProfile = (user) => {
+    const { displayName, photoURL } = user;
+
+    if (displayName && photoURL) {
+      setDisplayName(displayName);
+      setPhotoURL(photoURL);
+
+      updateProfile(displayName, photoURL)
+        .then(() => {
+          console.log("User profile updated successfully");
+        })
+        .catch((error) => {
+          console.error("Error updating user profile:", error);
+        });
+    }
   };
 
   return (
@@ -93,10 +149,13 @@ const Login = () => {
             <span className="ms-[43%] text-white text-xl "> Sing-in</span>
             <hr />
             <div className="flex justify-center gap-5 mt-3 mb-3">
-              <button className="btn btn-neutral border-nonetext-white">
+              <button
+                onClick={handleGoogleSignIn}
+                className="btn btn-neutral border-nonetext-white"
+              >
                 Google<FaGoogle></FaGoogle>
               </button>
-              <button className="btn">
+              <button onClick={handleGithubSignIn} className="btn">
                 GitHub<FaGithub></FaGithub>
               </button>
             </div>

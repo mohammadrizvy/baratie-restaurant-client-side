@@ -6,7 +6,7 @@ import Recipes from "../Pages/Recipes/Recipes";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import Blogs from "../Blogs/Blogs";
-import Cards from "../Pages/Cards/Cards";
+// import Cards from "../Pages/Cards/Cards";
 import LoginLayout from "../Layouts/LoginLayout";
 import OrderOnline from "../OrderOnline/OrderOnline";
 import PrivateRoute from "./PrivateRoute";

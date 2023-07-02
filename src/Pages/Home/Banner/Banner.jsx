@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tilt } from "react-tilt";
 import LazyLoad from "react-lazyload";
+import Marquee from 'react-fast-marquee';
 
 const defaultOptions = {
   reverse: false, 
@@ -17,6 +18,15 @@ const defaultOptions = {
 const Banner = () => {
   return (
     <div className="me-8 ms-8 mt-6 mb-6 rounded-md ">
+      {/* Marquee Here */}
+      <div className="mb-5">
+        <Marquee>
+          Welcome to Baratie Restaurant - Enjoy Delicious Food!, Try our
+          signature dishes made with love!, Experience the finest dining in
+          town!, Indulge in a culinary journey like no other!, Taste the flavors
+          that will delight your senses!,
+        </Marquee>
+      </div>
       <div className="bg-secondary text-white text-center py-4 p-8 rounded-t-lg">
         <div className="flex flex-col lg:flex-row items-center lg:justify-between p-8">
           <div className="w-full lg:w-1/2 ">

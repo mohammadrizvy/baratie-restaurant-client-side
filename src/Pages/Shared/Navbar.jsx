@@ -5,28 +5,27 @@ import { AuthContext } from "../../Providers/AuthProvider";
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
-  console.log(user?.email);
-  console.log(user?.displayName);
-  console.log(user?.photoURL);
+  // console.log(user?.email);
+  // console.log(user?.displayName);
+  // console.log(user?.photoURL);
 
-   const photoURL = user && user.photoURL;
-    const userName = user && user.displayName;
+  const photoURL = user && user.photoURL;
+  const userName = user && user.displayName;
 
   const handleLogout = () => {
-    logout() 
-    .then()
-    .catch((err) => {
-      console.log(err)
-    })
+    logout()
+      .then()
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-  }
-
-  const activeNaveStyles =({isActive}) => {
-    return{
-      fontWeight : isActive ? 'bold' : 'normal',
-      textDecoration : isActive ? 'none' : 'underline'
-    }
-  }
+  const activeNaveStyles = ({ isActive }) => {
+    return {
+      fontWeight: isActive ? "bold" : "normal",
+      textDecoration: isActive ? "none" : "underline",
+    };
+  };
   return (
     <div className="ms-8 me-8 mt-0">
       <div className="navbar bg-secondary rounded-br-lg rounded-bl-lg py-6">
@@ -80,20 +79,25 @@ const Header = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <div className="menu menu-horizontal px-1">
-            <NavLink style={activeNaveStyles} className="text-primary hover:scale-110 transition-transform duration-300 underline" to={"/"}>
-              
-                Home
-              
-            </NavLink>
-            <NavLink style={activeNaveStyles} className="me-8 ms-8 text-primary hover:scale-110 transition-transform duration-300 underline" to={"/blogs"}>
-              
-                Blogs
-              
+            <NavLink
+              style={activeNaveStyles}
+              className="text-primary hover:scale-110 transition-transform duration-300 underline"
+              to={"/"}
+            >
+              Home
             </NavLink>
             <NavLink
-            style={activeNaveStyles}
+              style={activeNaveStyles}
+              className="me-8 ms-8 text-primary hover:scale-110 transition-transform duration-300 underline"
+              to={"/blogs"}
+            >
+              Blogs
+            </NavLink>
+            <NavLink
+              style={activeNaveStyles}
               className="text-primary hover:scale-110 transition-transform duration-300 underline"
-              to={"/orderonline"}>
+              to={"/orderonline"}
+            >
               Order Online
             </NavLink>
           </div>
